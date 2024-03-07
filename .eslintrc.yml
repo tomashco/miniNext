@@ -11,6 +11,7 @@ parserOptions:
 extends:
   - plugin:react/recommended
   - standard
+  - prettier
 plugins:
   - react
 rules:
