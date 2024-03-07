@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { PageManager } from "./next.jsx";
 import { StaticRouter } from "react-router-dom/server.mjs";
 import { Provider as StateProvider } from "jotai";
 
@@ -13,11 +14,7 @@ export function createApp(ctx, url) {
     <StateProvider initialValues={[[todoList, ctx.data.todoList]]}>
       <Suspense>
         <Router location={url}>
-          <Routes>
-            {routes.map(({ path, component: Component }) => {
-              return <Route key={path} path={path} element={<Component />} />;
-            })}
-          </Routes>
+          <PageManager routes={routes} ctx={ctx} />
         </Router>
       </Suspense>
     </StateProvider>

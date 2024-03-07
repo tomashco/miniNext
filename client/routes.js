@@ -1,13 +1,5 @@
-import Index from "./pages/index.jsx";
-import Other from "./pages/other.jsx";
+import { getPageRoutes } from "./next.jsx";
 
-export default [
-  {
-    path: "/",
-    component: Index,
-  },
-  {
-    path: "/other",
-    component: Other,
-  },
-];
+export default getPageRoutes(
+  import.meta.glob("/pages/**/*.jsx", { eager: true }),
+);
