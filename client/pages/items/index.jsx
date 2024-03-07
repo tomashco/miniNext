@@ -1,23 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-export async function getServerSideProps ({ ky }) {
+export async function getServerSideProps({ fetchJSON }) {
   return {
-    todoList: await ky('api/todo-list').json()
-  }
+    todoList: await fetchJSON("/api/todo-list"),
+  };
 }
 
-export default function ItemsIndex ({ todoList = [] }) {
+export default function ItemsIndex({ todoList = [] }) {
+  console.log("todoList", todoList);
   return (
     <>
-      <ul>{
-        todoList.map((item, i) => {
-          return <li key={`item-${i}`}><Link to={`/items/${i}`}>{item}</Link></li>
-        })
-      }</ul>
+      <ul>
+        {todoList.map((item, i) => {
+          return (
+            <li key={`item-${i}`}>
+              <Link to={`/items/${i}`}>{item}</Link>
+            </li>
+          );
+        })}
+      </ul>
       <p>
         <Link to="/">Go to the index</Link>
       </p>
     </>
-  )
+  );
 }

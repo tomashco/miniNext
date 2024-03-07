@@ -18,7 +18,7 @@ function createRoute({ handler, errorHandler, route }, scope, config) {
       reply.send(
         await route.getServerSideProps({
           req,
-          ky: scope.ky,
+          fetchJSON: scope.fetchJSON,
         }),
       );
     });
@@ -30,7 +30,7 @@ function createRoute({ handler, errorHandler, route }, scope, config) {
       async preHandler(req, reply) {
         req.serverSideProps = await route.getServerSideProps({
           req,
-          ky: scope.ky,
+          fetchJSON: scope.fetchJSON,
         });
       },
     }),
