@@ -1,20 +1,18 @@
-
 import { useRouteContext } from '/:core.jsx'
 
-export function getData ({ req, reply }) {
+export function getData({ req, reply }) {
   if (req.method === 'POST') {
     if (req.body.number !== '42') {
       return reply.redirect('/')
     }
     return req.body
-  } else {
-    return {
-      number: ''
-    }
+  }
+  return {
+    number: '',
   }
 }
 
-export default function Form () {
+export default function Form() {
   const { data } = useRouteContext()
   return (
     <>
@@ -22,7 +20,12 @@ export default function Form () {
       <form method="post">
         <label for="name">Magic number:</label>
         <br />
-        <input type="text" id="number" name="number" defaultValue={data.number} />
+        <input
+          type="text"
+          id="number"
+          name="number"
+          defaultValue={data.number}
+        />
         <br />
         <input type="submit" value="Submit" />
       </form>

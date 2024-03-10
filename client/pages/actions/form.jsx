@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom'
 import { createServerAction } from '/:core.jsx'
+import { Link } from 'react-router-dom'
 
 const isAdmin = createServerAction()
 
-export function configure (server) {
+export function configure(server) {
   server.post(isAdmin, async (req, reply) => {
     await new Promise((resolve, reject) => {
       setTimeout(resolve, 1000)
@@ -16,7 +16,7 @@ export function configure (server) {
   })
 }
 
-export default function Form () {
+export default function Form() {
   return (
     <>
       <h1>Using inline server POST handler</h1>
