@@ -1,16 +1,20 @@
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import viteReact from "@vitejs/plugin-react";
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-const path = fileURLToPath(import.meta.url);
-const root = resolve(dirname(path), "client");
+import viteReact from '@vitejs/plugin-react'
+import fastifyReact from '@fastify/react/plugin'
 
-const plugins = [viteReact({ jsxRuntime: "classic" })];
+const path = fileURLToPath(import.meta.url)
 
 export default {
-  root,
-  plugins,
+  root: join(dirname(path), 'client'),
+  plugins: [
+    viteReact(), 
+    fastifyReact(),
+  ],
   ssr: {
-    external: ["fastify"],
+    external: [
+      'use-sync-external-store'
+    ]
   },
-};
+}

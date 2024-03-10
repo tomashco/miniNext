@@ -1,9 +1,8 @@
-import { createApp } from "./base.jsx";
-import routes from "./routes.js";
+import routes from '/:routes.js'
+import create from '/:create.jsx'
 
-export default {
-  // Provides client-side navigation routes to server
+export default { 
+  context: import('/:context.js'), 
   routes,
-  // Provides function needed to perform SSR
-  createApp,
-};
+  create,
+}

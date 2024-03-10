@@ -1,45 +1,39 @@
-#!/usr/bin/env node
-import { fileURLToPath } from "node:url";
+import Fastify from 'fastify'
+import FastifyVite from '@fastify/vite'
+import FastifyFormBody from '@fastify/formbody'
 
-import Fastify from "fastify";
-import FastifyVite from "@fastify/vite";
+const server = Fastify({
+  logger: {
+    transport: {
+      target: '@fastify/one-line-logger'
+    }
+  }
+})
 
-// fetch() is natively available in Node.js v18
-// This example gets it from undici so it can work on v16 as well
-import { fetch } from "undici";
+await server.register(FastifyFormBody)
+await server.register(FastifyVite, { 
+  root: import.meta.url, 
+  renderer: '@fastify/react',
+})
 
-import renderer from "./renderer.js";
+await server.vite.ready()
 
-export async function main(dev) {
-  const server = Fastify({ ignoreTrailingSlash: true });
+server.decorate('db', {
+  todoList: [
+    'Do laundry',
+    'Respond to emails',
+    'Write report',
+  ]
+})
 
-  server.decorate("fetchJSON", async (path) => {
-    const response = await fetch(`http://localhost:3000${path}`);
-    return response.json();
-  });
+server.put('/api/todo/items', (req, reply) => {
+  server.db.todoList.push(req.body)
+  reply.send({ ok: true })
+})
 
-  server.get("/api/todo-list", (_, reply) => {
-    reply.send(["Do laundry", "Respond to emails", "Write report"]);
-  });
+server.delete('/api/todo/items', (req, reply) => {
+  server.db.todoList.splice(req.body, 1)
+  reply.send({ ok: true })
+})
 
-  server.setErrorHandler((err, req, reply) => {
-    console.error(err);
-    reply.code(500);
-    reply.send(err);
-  });
-
-  await server.register(FastifyVite, {
-    root: import.meta.url,
-    dev: dev || process.argv.includes("--dev"),
-    renderer,
-  });
-
-  await server.vite.ready();
-
-  return server;
-}
-
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const server = await main();
-  await server.listen({ port: 3000 });
-}
+await server.listen({ port: 3000 })
