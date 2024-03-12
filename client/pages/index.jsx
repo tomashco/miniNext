@@ -51,6 +51,9 @@ export default function Index() {
         <li>
           <Link to="/streaming">/streaming</Link> — <b>streaming</b> SSR.
         </li>
+        <li>
+          <Link to="/some-testing">/Some-testing</Link> — Some testing.
+        </li>
       </ul>
     </>
   )

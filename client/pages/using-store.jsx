@@ -7,7 +7,7 @@ export function getMeta() {
 }
 
 export default function Index(props) {
-  const { snapshot, state, actions } = useRouteContext()
+  const { actions, state, snapshot } = useRouteContext()
   const [input, setInput] = useState(null)
   const addItem = async (value) => {
     await actions.todoList.add(state, value)

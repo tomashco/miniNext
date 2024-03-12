@@ -11,5 +11,6 @@ export default {
   plugins: [viteReact(), fastifyReact()],
   ssr: {
     external: ["use-sync-external-store"],
+    noExternal: ["@trpc/react-query"],
   },
 };
