@@ -1,5 +1,5 @@
-import { mergeRouters } from "../trpc";
-import ExampleRouter from "./example";
+import { mergeRouters } from "../trpc.js";
+import ExampleRouter from "./example.js";
 
 type AppRouter = typeof appRouter;
 

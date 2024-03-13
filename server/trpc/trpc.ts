@@ -1,7 +1,7 @@
 import { initTRPC } from "@trpc/server";
 import type { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify";
 import { ZodError } from "zod";
-import { transformer } from "./transformer";
+import { transformer } from "./transformer.js";
 export function createContext({ req, res }: CreateFastifyContextOptions) {
   const user = { name: req.headers.username ?? "anonymous" };
   return { req, res, user };
