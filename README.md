@@ -1,5 +1,5 @@
-<br>
+# MiniNext: Fastify + Vite (React) + tRPC
 
-The official **[Fastify DX for React](https://github.com/fastify/fastify-dx/tree/main/packages/fastify-react)** starter template.
+Starting from [**@fastify-vite react-kitchensink**](https://github.com/fastify/fastify-vite/tree/dev/starters/react-kitchensink) starter template I'm exploring how to add typescript support to make use of tRPC with [react query](https://tanstack.com/query/v3/).
 
-See the [**`@fastify/react`**](https://github.com/fastify/fastify-dx/tree/main/packages/fastify-react)'s README for the full documentation.
+Many thanks to [@galvez](https://github.com/galvez) for the awesome project [**fastify-vite**](https://github.com/fastify/fastify-vite)!
