@@ -1,8 +1,11 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "tsx ./server.ts --dev",
-    "start": "node server.js",
+    "dev": "tsx server.ts --dev",
+    "start:dev": "tsx server.ts",
+    "start": "node ./build/server.js",
+    "build:multiple": "esbuild server.ts --platform=node --target=esnext --outdir=build --format=esm && esbuild `find server \\( -name '*.ts' \\)` --platform=node --target=esnext --outdir=build/server --format=cjs",
+    "build:fastify": "esbuild server.ts `find server \\( -name '*.ts' \\)` --platform=node --target=esnext --outdir=build --format=esm",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --outDir dist/server --ssr /index.js",
@@ -34,6 +37,7 @@
     "@biomejs/biome": "1.6.0",
     "@types/node": "^20.11.25",
     "@vitejs/plugin-react": "^4.2.0",
+    "esbuild": "^0.20.1",
     "fastify-tsconfig": "^2.0.0",
     "postcss": "^8.4.31",
     "postcss-nesting": "^12.0.2",

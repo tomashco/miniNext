@@ -2,9 +2,9 @@ import {
   fastifyTRPCPlugin,
   type FastifyTRPCPluginOptions,
 } from "@trpc/server/adapters/fastify";
-import type { AppRouter } from "./trpc/router";
-import appRouter from "./trpc/router";
-import { createContext } from "./context.js";
+import type { AppRouter } from "./server/trpc/router";
+import appRouter from "./server/trpc/router/index";
+import { createContext } from "./server/context";
 import FastifyFormBody from "@fastify/formbody";
 import FastifyVite from "@fastify/vite";
 import Fastify from "fastify";
