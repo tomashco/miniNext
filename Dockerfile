@@ -19,4 +19,6 @@ COPY --from=build /app/build /app/build
 EXPOSE 3000
 
 RUN --mount=type=secret,id=DB_URL \
-    DB_URL="$(cat /run/secrets/DB_URL)" pnpm start
+    DB_URL="$(cat /run/secrets/DB_URL)" 
+
+CMD ["pnpm", "start"]
