@@ -1,19 +1,19 @@
-import { createServerAction } from '/:core.jsx'
-import { Link } from 'react-router-dom'
+import { createServerAction } from "/:core.jsx";
+import { Link } from "react-router-dom";
 
-const isAdmin = createServerAction()
+const isAdmin = createServerAction();
 
 export function configure(server) {
   server.post(isAdmin, async (req, reply) => {
     await new Promise((resolve, reject) => {
-      setTimeout(resolve, 1000)
-    })
-    const username = req.body.username
-    if (username === 'admin') {
-      return reply.redirect('/admin')
+      setTimeout(resolve, 1000);
+    });
+    const username = req.body.username;
+    if (username === "admin") {
+      return reply.redirect("/admin");
     }
-    return new Error('Invalid username')
-  })
+    return reply.redirect("/404");
+  });
 }
 
 export default function Form() {
@@ -29,5 +29,5 @@ export default function Form() {
         <Link to="/">Go back to the index</Link>
       </p>
     </>
-  )
+  );
 }

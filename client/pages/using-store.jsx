@@ -1,18 +1,18 @@
-import { useRouteContext } from '/:core.jsx'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useRouteContext } from "/:core.jsx";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function getMeta() {
-  return { title: 'Todo List — Using Store' }
+  return { title: "Todo List — Using Store" };
 }
 
 export default function Index(props) {
-  const { actions, state, snapshot } = useRouteContext()
-  const [input, setInput] = useState(null)
+  const { actions, state, snapshot } = useRouteContext();
+  const [input, setInput] = useState(null);
   const addItem = async (value) => {
-    await actions.todoList.add(state, value)
-    input.value = ''
-  }
+    await actions.todoList.add(state, value);
+    input.value = "";
+  };
   return (
     <>
       <h2>Todo List — Using Store</h2>
@@ -25,9 +25,18 @@ export default function Index(props) {
                 i
               }`}
             >
+              <button
+                type="button"
+                onClick={() => {
+                  console.log(Object.keys(actions.todoList));
+                  actions.todoList.remove(state, i);
+                }}
+              >
+                ✕
+              </button>
               {item}
             </li>
-          )
+          );
         })}
       </ul>
       <div>
@@ -45,5 +54,5 @@ export default function Index(props) {
         are not lost, because they're bound to the global application state.
       </p>
     </>
-  )
+  );
 }

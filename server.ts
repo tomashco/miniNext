@@ -54,6 +54,7 @@ await server.register(FastifyVite, {
 
 await server.vite.ready();
 
+// Add a fake database which gets augmented adding items with using-store
 server.decorate("db", {
   todoList: ["Do laundry", "Respond to emails", "Write report"],
 });

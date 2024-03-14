@@ -1,6 +1,6 @@
 // Thin layer on top of fetch()
 // to automatically perform JSON requests
-import { sendJSON } from "/fetch.js";
+import { sendJSON } from "./fetch.js";
 
 // The default export function runs exactly once on
 // the server and once on the client during the
