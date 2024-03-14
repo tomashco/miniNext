@@ -5,8 +5,7 @@ RUN corepack enable
 COPY . /app
 WORKDIR /app
 
-# FROM base AS prod-deps
-# RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+RUN apt-get update -y && apt-get install -y openssl
 
 FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
@@ -21,5 +20,3 @@ EXPOSE 3000
 
 RUN --mount=type=secret,id=DB_URL \
     DB_URL="$(cat /run/secrets/DB_URL)" pnpm start
-
-# CMD [ "pnpm", "start" ]
