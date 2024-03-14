@@ -4,11 +4,11 @@ import { useRouteContext } from "/:core.jsx";
 import { Link } from "react-router-dom";
 
 export function getMeta() {
-  return { title: "Some Testing" };
+  return { title: "tRPC integration" };
 }
 
 export default function Index() {
-  const { snapshot } = useRouteContext();
+  const { snapshot, data: owners } = useRouteContext();
   const { isLoading, data, mutate } = trpc.exampleWithArgs.useMutation({
     onSuccess: (res) => {
       console.log("🚀 mutation success: ", res);
@@ -22,24 +22,7 @@ export default function Index() {
 
   return (
     <>
-      <h2>This is some testing I'm doing</h2>
-      <ul>
-        {
-          // @ts-ignore
-          snapshot.todoList.map((item, i) => {
-            return (
-              <li
-                key={`item-${
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                  i
-                }`}
-              >
-                {item}
-              </li>
-            );
-          })
-        }
-      </ul>
+      <h2>tRPC Integration</h2>
       <div className="flex space-x-3">
         <button type="button" onClick={handleClick}>
           Use Mutation!

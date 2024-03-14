@@ -1,18 +1,18 @@
-import { isServer, useRouteContext } from '/:core.jsx'
-import { Link } from 'react-router-dom'
-import logo from '/assets/logo.svg'
+import { isServer, useRouteContext } from "/:core.jsx";
+import { Link } from "react-router-dom";
+import logo from "/assets/logo.svg";
 
 export function getMeta() {
   return {
-    title: 'Welcome to @fastify/react!',
-  }
+    title: "Welcome to @fastify/react!",
+  };
 }
 
 export default function Index() {
-  const { snapshot, state } = useRouteContext()
+  const { snapshot, state } = useRouteContext();
   if (isServer) {
     // State is automatically hydrated on the client
-    state.message = 'Welcome to @fastify/react!'
+    state.message = "Welcome to @fastify/react!";
   }
   return (
     <>
@@ -23,7 +23,7 @@ export default function Index() {
           <Link to="/using-data">/using-data</Link> — isomorphic data fetching.
         </li>
         <li>
-          <Link to="/using-store">/using-store</Link> — integrated{' '}
+          <Link to="/using-store">/using-store</Link> — integrated{" "}
           <a href="https://github.com/pmndrs/valtio">Valtio</a> store.
         </li>
         <li>
@@ -34,27 +34,30 @@ export default function Index() {
           route.
         </li>
         <li>
-          <Link to="/actions/data">/actions/data</Link> — inline{' '}
+          <Link to="/actions/data">/actions/data</Link> — inline{" "}
           <code>GET</code> handler.
         </li>
         <li>
-          <Link to="/actions/form">/actions/form</Link> — inline{' '}
+          <Link to="/actions/form">/actions/form</Link> — inline{" "}
           <code>POST</code> handler.
         </li>
         <li>
           <Link to="/client-only">/client-only</Link> — <b>disabling</b> SSR.
         </li>
         <li>
-          <Link to="/server-only">/server-only</Link> — <code>0kb</code>{' '}
+          <Link to="/server-only">/server-only</Link> — <code>0kb</code>{" "}
           JavaScript.
         </li>
         <li>
           <Link to="/streaming">/streaming</Link> — <b>streaming</b> SSR.
         </li>
         <li>
-          <Link to="/some-testing">/Some-testing</Link> — Some testing.
+          <Link to="/tRPC">/tRPC</Link> — tRPC integration.
+        </li>
+        <li>
+          <Link to="/prisma">/prisma</Link> — Prisma with server actions.
         </li>
       </ul>
     </>
-  )
+  );
 }

@@ -20,6 +20,7 @@ export default function Index(props) {
         {snapshot.todoList.map((item, i) => {
           return (
             <li
+              className="list-none"
               key={`item-${
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 i
@@ -27,6 +28,7 @@ export default function Index(props) {
             >
               <button
                 type="button"
+                className="mr-2"
                 onClick={() => {
                   console.log(Object.keys(actions.todoList));
                   actions.todoList.remove(state, i);

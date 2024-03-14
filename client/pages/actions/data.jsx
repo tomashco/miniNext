@@ -9,17 +9,9 @@ import { Link } from "react-router-dom";
 
 const accessCounter = createServerAction();
 
-export function getData({ server }) {
-  return {
-    message: server.db.todoList,
-  };
-}
-
 export function configure(server) {
   let counter = 0;
   server.get(accessCounter, (_, reply) => {
-    console.log("🚀 ~ server.get ~ accessCounter:", accessCounter);
-
     reply.send({ counter: ++counter });
   });
 }
@@ -29,8 +21,6 @@ export default function Form() {
   // with the exception that data is retrieved only once per
   // route and cleared only when the user navigates to another route.
   const data = useServerAction(accessCounter);
-
-  const { data: getData } = useRouteContext();
 
   const [counter, setCounter] = useState(data.counter);
 
@@ -44,7 +34,6 @@ export default function Form() {
   return (
     <>
       <h1>Using inline server GET handler</h1>
-      <p>getData: {getData.message}</p>
       <p>
         <code>useServerAction(endpoint)</code> acts a React Suspense resource,
         with the exception that data is retrieved only once per route and

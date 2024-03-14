@@ -1,0 +1,26 @@
+// Define the `User` table in the database
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Owner {
+  ownerId String  @id @unique @default(cuid())
+  name    String?
+  email   String  @unique
+  pets    Pet[]
+}
+
+// Define the `Post` table in the database
+model Pet {
+  petId       String   @id @unique @default(cuid())
+  published   Boolean? @default(false)
+  name        String
+  description String?
+  owner       Owner?   @relation(fields: [petOwnerId], references: [ownerId])
+  petOwnerId  String?
+}

@@ -17,6 +17,9 @@ dependencies:
   '@fastify/vite':
     specifier: ^6.0.5
     version: 6.0.6(@types/node@20.11.25)
+  '@prisma/client':
+    specifier: ^5.11.0
+    version: 5.11.0
   '@tanstack/react-query':
     specifier: ^4.35.3
     version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
@@ -35,6 +38,9 @@ dependencies:
   fastify:
     specifier: ^4.24.3
     version: 4.26.2
+  fastify-plugin:
+    specifier: ^4.5.1
+    version: 4.5.1
   history:
     specifier: ^5.3.0
     version: 5.3.0
@@ -1180,6 +1186,17 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@prisma/client@5.11.0:
+    resolution: {integrity: sha512-SWshvS5FDXvgJKM/a0y9nDC1rqd7KG0Q6ZVzd+U7ZXK5soe73DJxJJgbNBt2GNXOa+ysWB4suTpdK5zfFPhwiw==}
+    engines: {node: '>=16.13'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dev: false
 
   /@remix-run/router@1.15.3:
     resolution: {integrity: sha512-Oy8rmScVrVxWZVOpEF57ovlnhpZ8CCPlnIIumVcV9nFdiSIrus99+Lw78ekXyGvVDlIsFJbSfmSovJUhCWYV3w==}
