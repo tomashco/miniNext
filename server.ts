@@ -68,4 +68,4 @@ server.delete("/api/todo/items", (req, reply) => {
   reply.send({ ok: true });
 });
 
-await server.listen({ port: 3000 });
+await server.listen({ port: 3000, host: "0.0.0.0" });
