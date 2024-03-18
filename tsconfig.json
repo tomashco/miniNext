@@ -8,7 +8,11 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./client/*"]
+    }
   },
   "exclude": ["node_modules"]
 }

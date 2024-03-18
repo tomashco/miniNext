@@ -1,6 +1,7 @@
 import { isServer, useRouteContext } from "/:core.jsx";
 import { Link } from "react-router-dom";
 import logo from "/assets/logo.svg";
+import { Button } from "@/components/ui/button";
 
 export function getMeta() {
   return {
@@ -16,11 +17,19 @@ export default function Index() {
   }
   return (
     <>
-      <img alt="logo" src={logo} />
-      <h1>{snapshot.message}</h1>
+      <div
+        id="header"
+        className="h-16 flex items-center justify-between w-full md:w-[95%]"
+      >
+        <img width={100} height={100} alt="logo" src={logo} />
+        <h1>{snapshot.message}</h1>
+      </div>
       <ul className="columns-2">
         <li>
-          <Link to="/using-data">/using-data</Link> — isomorphic data fetching.
+          <Link to="/using-data">
+            <Button>/using-data</Button>
+          </Link>{" "}
+          — isomorphic data fetching.
         </li>
         <li>
           <Link to="/using-store">/using-store</Link> — integrated{" "}
