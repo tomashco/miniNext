@@ -8,6 +8,8 @@ import { createContext } from "./server/context.js";
 import FastifyFormBody from "@fastify/formbody";
 import FastifyVite from "@fastify/vite";
 import Fastify from "fastify";
+import { PrismaClient } from "@prisma/client";
+import fastifyPrisma from "@joggr/fastify-prisma";
 
 import type {
   RawReplyDefaultExpression,
@@ -15,7 +17,6 @@ import type {
   RawServerBase,
   RawServerDefault,
 } from "fastify";
-// import prismaPlugin from "./server/plugins/prisma.js";
 
 declare module "fastify" {
   export interface FastifyInstance<
@@ -35,8 +36,6 @@ const server = Fastify({
   },
 });
 
-// server.register(prismaPlugin);
-
 server.register(fastifyTRPCPlugin, {
   prefix: "/trpc",
   trpcOptions: {
@@ -47,6 +46,10 @@ server.register(fastifyTRPCPlugin, {
       console.error(`Error in tRPC handler on path '${path}':`, error);
     },
   } satisfies FastifyTRPCPluginOptions<AppRouter>["trpcOptions"],
+});
+
+await server.register(fastifyPrisma, {
+  client: new PrismaClient(),
 });
 
 await server.register(FastifyFormBody);
@@ -71,51 +74,5 @@ server.delete("/api/todo/items", (req, reply) => {
   server.db.todoList.splice(req.body as number, 1);
   reply.send({ ok: true });
 });
-
-// server.get("/owner", async (req, res) => {
-//   const posts = await prisma.owner.findMany({
-//     include: { pets: true },
-//   });
-
-//   res.send(posts);
-// });
-
-// server.post("/owner", async (req, res) => {
-//   const { name, email } = req.body;
-
-//   const post = await prisma.owner.create({
-//     data: {
-//       name,
-//       email,
-//       // author: { connect: { email: authorEmail } },
-//     },
-//   });
-
-//   res.send(post);
-// });
-
-// server.put("/publish/:id", async (req, res) => {
-//   const { id } = req.params;
-
-//   const post = await prisma.post.update({
-//     where: { id },
-
-//     data: { published: true },
-//   });
-
-//   res.send(post);
-// });
-
-// server.delete("/user/:id", async (req, res) => {
-//   const { id } = req.params;
-
-//   const user = await prisma.user.delete({
-//     where: {
-//       id,
-//     },
-//   });
-
-//   res.send(user);
-// });
 
 await server.listen({ port: 3000, host: "0.0.0.0" });
