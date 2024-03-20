@@ -22,7 +22,6 @@ export function getMeta() {
 
 export default function Index() {
   const { snapshot, state } = useRouteContext();
-  const [count, setCount] = useState(0);
 
   const pages = [
     {
@@ -33,12 +32,7 @@ export default function Index() {
     {
       linkName: "/using-store",
       href: "/using-store",
-      description: (
-        <>
-          — integrated <a href="https://github.com/pmndrs/valtio">Valtio</a>{" "}
-          store.
-        </>
-      ),
+      description: <>— integrated Valtio store.</>,
     },
     {
       linkName: "/using-auth",
@@ -127,7 +121,7 @@ export default function Index() {
         <img width={100} height={100} alt="logo" src={logo} />
         <TypographyH1 text={snapshot.message} />
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Button size="icon">
               <HamburgerMenuIcon color="white" />
             </Button>
