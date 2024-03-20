@@ -1,18 +1,19 @@
-import { useRouteContext } from '/:core.jsx'
-import { Suspense } from 'react'
+import { useRouteContext } from "/:core.jsx";
+import { Suspense } from "react";
+import { Layout } from "@/components/layout";
 
 export default function Auth({ children }) {
-  const { actions, state, snapshot } = useRouteContext()
-  const authenticate = () => actions.authenticate(state)
+  const { actions, state, snapshot } = useRouteContext();
+  const authenticate = () => actions.authenticate(state);
   return (
     <Suspense>
       {snapshot.user.authenticated ? (
-        children
+        <Layout>{children}</Layout>
       ) : (
         <Login onClick={() => authenticate()} />
       )}
     </Suspense>
-  )
+  );
 }
 
 function Login({ onClick }) {
@@ -23,5 +24,5 @@ function Login({ onClick }) {
         Click this button to authenticate.
       </button>
     </>
-  )
+  );
 }

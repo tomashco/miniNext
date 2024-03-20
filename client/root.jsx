@@ -1,7 +1,7 @@
-import { AppRoute, Router } from '/:core.jsx'
-import { Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import RootProvider from './providers'
+import { AppRoute, Router } from "/:core.jsx";
+import { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import RootProvider from "./providers";
 
 export default function Root({ url, routes, head, ctxHydration, routeMap }) {
   return (
@@ -28,5 +28,5 @@ export default function Root({ url, routes, head, ctxHydration, routeMap }) {
         </Routes>
       </Router>
     </Suspense>
-  )
+  );
 }

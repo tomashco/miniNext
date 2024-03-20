@@ -15,7 +15,7 @@ import type {
   RawServerBase,
   RawServerDefault,
 } from "fastify";
-import prismaPlugin from "./server/plugins/prisma.js";
+// import prismaPlugin from "./server/plugins/prisma.js";
 
 declare module "fastify" {
   export interface FastifyInstance<
@@ -35,7 +35,7 @@ const server = Fastify({
   },
 });
 
-server.register(prismaPlugin);
+// server.register(prismaPlugin);
 
 server.register(fastifyTRPCPlugin, {
   prefix: "/trpc",

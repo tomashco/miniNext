@@ -1,5 +1,5 @@
 import { dirname, join } from "node:path";
-import { fileURLToPath, resolve } from "node:url";
+import { fileURLToPath } from "node:url";
 import fastifyReact from "@fastify/react/plugin";
 import viteReact from "@vitejs/plugin-react";
 
