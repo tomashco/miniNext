@@ -8,7 +8,10 @@ export default function Auth({ children }) {
   return (
     <Suspense>
       {snapshot.user.authenticated ? (
-        <Layout>{children}</Layout>
+        <Layout>
+          user is authenticated
+          {children}
+        </Layout>
       ) : (
         <Login onClick={() => authenticate()} />
       )}

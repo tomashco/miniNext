@@ -1,8 +1,8 @@
-import trpc from "../utils/trpc";
 // @ts-ignore
 import { useRouteContext } from "/:core.jsx";
 import { Link } from "react-router-dom";
 import type { Owner, Pet } from "@prisma/client";
+import type { FastifyInstance } from "fastify";
 
 type OwnerWithPets = Owner & { pets: Pet[] };
 
@@ -10,7 +10,7 @@ export function getMeta() {
   return { title: "Prisma with server actions" };
 }
 
-export function getData({ server }) {
+export function getData({ server }: { server: FastifyInstance }) {
   const owners = server.prisma.owner.findMany({
     include: { pets: true },
   });

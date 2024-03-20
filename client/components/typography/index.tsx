@@ -1,5 +1,5 @@
 type TypographyProps = {
-  text: string;
+  text: string | JSX.Element;
 };
 
 export function TypographyH1({ text }: TypographyProps) {
