@@ -3,6 +3,8 @@ import { useRouteContext } from "/:core.jsx";
 import { Link } from "react-router-dom";
 import type { Owner, Pet } from "@prisma/client";
 import type { FastifyInstance } from "fastify";
+import { TypographyH2, TypographyH3 } from "@/components/typography";
+import { Button } from "@/components/ui/button";
 
 type OwnerWithPets = Owner & { pets: Pet[] };
 
@@ -23,16 +25,19 @@ export default function Index() {
 
   return (
     <>
-      <h2>Prisma with server actions</h2>
+      <TypographyH2>Prisma with server actions</TypographyH2>
+      <Button variant={"link"}>
+        <Link to="/">Go back to the index</Link>
+      </Button>
       {owners.map((owner: OwnerWithPets) => {
         return (
           <div>
-            <h3>Owner name: {owner.name}</h3>
-            <ul>
+            <TypographyH3>Owner: {owner.name}</TypographyH3>
+            <ul className="p-3">
               {owner.pets.map((pet: Pet) => {
                 return (
-                  <li>
-                    <h4>Pet Name: {pet.name}</h4>
+                  <li className="space-x-3">
+                    <h4>Pet: {pet.name}</h4>
                   </li>
                 );
               })}
@@ -40,9 +45,6 @@ export default function Index() {
           </div>
         );
       })}
-      <p>
-        <Link to="/">Go back to the index</Link>
-      </p>
     </>
   );
 }
