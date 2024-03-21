@@ -27,7 +27,7 @@ export default function Index() {
   };
   return (
     <div>
-      <TypographyH2 text="Todo List — Using Data" />
+      <TypographyH2>Todo List — Using Data</TypographyH2>
       <Button variant={"link"}>
         <Link to="/">Go back to the index</Link>
       </Button>
@@ -57,18 +57,17 @@ export default function Index() {
           );
         })}
       </ul>
-      <TypographyBlockquote text="When you navigate away from this route, any additions to the to-do list will be lost, because they're bound to this route component only." />
-      <TypographyBlockquote
-        text={
-          <>
-            See the{" "}
-            <Button variant={"link"}>
-              <Link to="/using-store">/using-store</Link>
-            </Button>{" "}
-            example to learn how to use the application global state for it.
-          </>
-        }
-      />
+      <TypographyBlockquote>
+        When you navigate away from this route, any additions to the to-do list
+        will be lost, because they're bound to this route component only.
+      </TypographyBlockquote>
+      <TypographyBlockquote>
+        See the{" "}
+        <Button variant={"link"}>
+          <Link to="/using-store">/using-store</Link>
+        </Button>{" "}
+        example to learn how to use the application global state for it.
+      </TypographyBlockquote>
     </div>
   );
 }

@@ -1,25 +1,27 @@
-import { TypographyBlockquote, TypographyH2 } from "@/components/typography";
+import { Input } from "@/components/ui/input";
 // @ts-ignore: Unreachable code error
 import { useRouteContext } from "/:core.jsx";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { TypographyBlockquote, TypographyH2 } from "@/components/typography";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
+export const layout = "auth";
 
 export function getMeta() {
-  return { title: "Todo List — Using Store" };
+  return { title: "Using Custom Layout" };
 }
 
 export default function Index() {
-  const { actions, state, snapshot } = useRouteContext();
+  const { snapshot, state, actions } = useRouteContext();
   const input = useRef<HTMLInputElement | null>(null);
   const addItem = async (value: string) => {
     await actions.todoList.add(state, value);
-    if (input.current) input.current.value = "";
+    if (input?.current?.value) input.current.value = "";
   };
   return (
     <>
-      <TypographyH2>Todo List — Using Store</TypographyH2>
+      <TypographyH2>Todo List — Using Custom Layout</TypographyH2>
       <Button variant={"link"}>
         <Link to="/">Go back to the index</Link>
       </Button>
@@ -34,34 +36,27 @@ export default function Index() {
           Add
         </Button>
       </div>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col items-center">
         {snapshot.todoList.map((item: string, i: number) => {
           return (
             <li
-              className="list-none p-3"
+              className="p-3"
               key={`item-${
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 i
               }`}
             >
-              <button
-                type="button"
-                className="mr-2"
-                onClick={() => {
-                  console.log(Object.keys(actions.todoList));
-                  actions.todoList.remove(state, i);
-                }}
-              >
-                X
-              </button>
               {item}
             </li>
           );
         })}
       </ul>
       <TypographyBlockquote>
-        When you navigate away from this route, any additions to the to-do list
-        are not lost, because they're bound to the global application state.
+        This example is exactly the same as{" "}
+        <Link to="/using-store">/using-store</Link>, except it's wrapped in a
+        custom layout which blocks it until
+        <code>user.authenticated</code> is <code>true</code> in the global
+        state.
       </TypographyBlockquote>
     </>
   );
