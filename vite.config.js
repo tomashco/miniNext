@@ -8,6 +8,7 @@ const path = fileURLToPath(import.meta.url);
 export default {
   root: join(dirname(path), "client"),
   plugins: [viteReact(), fastifyReact()],
+  assetsInclude: ["**/*.md"],
   resolve: {
     alias: {
       "@": join(dirname(path), "client"),

@@ -6,7 +6,7 @@
     "start": "node ./build/server.js",
     "build:fastify": "esbuild server.ts `find server \\( -name '*.ts' \\)` --platform=node --target=esnext --outdir=build --format=esm",
     "build": "pnpm run /^build:.*/ && pnpm run copy",
-    "copy": "mkdir build/client && cp -r client/dist build/client/dist && cp vite.config.js build && cp client/base.css build/client && cp client/index.html build/client && cp client/index.js build/client",
+    "copy": "mkdir build/client && cp -r client/dist build/client/dist && cp README.md build && cp vite.config.js build && cp client/base.css build/client && cp client/index.html build/client && cp client/index.js build/client",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --outDir dist/server --ssr /index.js",
     "devinstall": "zx ../../devinstall.mjs -- node server.js --dev",
